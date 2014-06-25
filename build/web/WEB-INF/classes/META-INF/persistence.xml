@@ -3,6 +3,10 @@
   <persistence-unit name="WebFinal" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>modelo.Procedimento</class>
+    <class>modelo.Especie</class>
+    <class>modelo.Raca</class>
+    <class>modelo.Pelagem</class>
+    <class>modelo.Animal</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/webfinal?zeroDateTimeBehavior=convertToNull"/>

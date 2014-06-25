@@ -1,8 +1,16 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Pelagem {
-    
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name="descricao",nullable = false,length = 80)
     private String descricao;
 
     public Pelagem() {
@@ -59,7 +67,5 @@ public class Pelagem {
     public String toString() {
         return descricao;
     }
-    
-    
     
 }

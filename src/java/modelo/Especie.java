@@ -1,10 +1,18 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Especie {
-
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name = "descricao",length = 100,nullable = false)
     private String descricao;
-
+    
     public Especie() {
     }
 
@@ -59,7 +67,5 @@ public class Especie {
     public String toString() {
         return descricao;
     }
-
-    
     
 }

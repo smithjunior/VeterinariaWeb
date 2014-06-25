@@ -1,43 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Juliano Toriani <julianotoriani@gmail.com>
- */
-public class GenericDAO<E> {
+public class GenericDAO<Generic> {
 
     private EntityManager manager;
-    private Class<E> clazz;
+    private Class<Generic> clazz;
 
-    public GenericDAO(EntityManager manager, Class<E> clazz) {
+    public GenericDAO(EntityManager manager, Class<Generic> clazz) {
         this.manager = manager;
         this.clazz = clazz;
     }
 
-    public void inserir(E obj) {
+    public void inserir(Generic obj) {
         manager.persist(obj);
     }
 
-    public E consultar(long id) {
+    public Generic consultar(long id) {
         return manager.find(clazz, id);
     }
 
-    public List<E> listar() {
+    public List<Generic> listar() {
         Query query = manager.createQuery("select o from "+clazz.getName()+" o");
         return query.getResultList();
     }
-    public void excluir(E obj){
+    public void excluir(Generic obj){
         manager.remove(obj);
     }
-     public void alterar(E obj){
+     public void alterar(Generic obj){
         manager.merge(obj);
     }
 }

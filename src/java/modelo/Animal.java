@@ -1,14 +1,29 @@
 package modelo;
 
 import java.util.Calendar;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import org.hibernate.annotations.ManyToAny;
+@Entity
 public class Animal {
-
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name = "nome",nullable = false,length = 100)
     private String nome;
+    @Column(name = "nascimento", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar nascimento = Calendar.getInstance();
+    @Column(name = "chip",nullable = false,length = 50)
     private String chip;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Raca raca;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pelagem pelagem;
 
     public long getId() {
