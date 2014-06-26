@@ -27,7 +27,7 @@ public class GenericDAO<Generic> {
         return query.getResultList();
     }
     public void excluir(Generic obj){
-        manager.remove(obj);
+        manager.remove(manager.merge(obj));
     }
      public void alterar(Generic obj){
         manager.merge(obj);
