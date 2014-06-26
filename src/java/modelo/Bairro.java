@@ -15,7 +15,7 @@ public class Bairro {
     private long id;
     @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
-    @ManyToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cidade cidade;
 
     public Bairro() {
