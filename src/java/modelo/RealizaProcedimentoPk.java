@@ -1,12 +1,16 @@
 package modelo;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class RealizaProcedimentoPk {
+public class RealizaProcedimentoPk implements  Serializable{
     
     private long procedimento_pk;
     private long animal_id;
+
+    public RealizaProcedimentoPk() {
+    }
 
     public RealizaProcedimentoPk(long procedimento_pk, long animal_id) {
         this.procedimento_pk = procedimento_pk;
