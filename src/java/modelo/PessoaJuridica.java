@@ -1,7 +1,12 @@
 package modelo;
 
-public class PessoaJuridica extends Pessoa{
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
+@Entity
+public class PessoaJuridica extends Pessoa{
+    @Column(name="cnpj",nullable = false,length = 30)
     private String cnpj;
 
     public PessoaJuridica() {

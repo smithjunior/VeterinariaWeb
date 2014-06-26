@@ -1,9 +1,22 @@
 package modelo;
 
-public class Logradouro {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Generated;
 
+@Entity
+public class Logradouro {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name="descricao",nullable = false,length = 80)
     private String descricao;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Bairro bairro;
 
     public Logradouro() {

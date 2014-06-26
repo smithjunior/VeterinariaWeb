@@ -1,7 +1,15 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class PessoaFisica extends Pessoa{
-
+    @Column(name="cpf",nullable = false,length = 15)
     private String cpf;
 
     public PessoaFisica() {

@@ -1,9 +1,21 @@
 package modelo;
 
-public class Bairro {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Bairro {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
+    @ManyToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private Cidade cidade;
 
     public Bairro() {

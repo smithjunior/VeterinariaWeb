@@ -1,28 +1,34 @@
 package modelo;
 
-public class Enderecamento {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-    private Logradouro logradouro;
-    private Pessoa pessoa;
+@Entity
+public class Enderecamento {
+    @EmbeddedId
+    private EnderecamentoPk id;
+    @Column(name="numero",length = 30,nullable = false)
     private String numero;
+    @Column(name = "complemento",length = 100,nullable = false)
     private String complemento;
+    @Enumerated(EnumType.STRING)
     private TipoEnderecoEnum tipoEnderecamento;
+    @OneToOne(fetch = FetchType.LAZY)
     private PontoGeografico pontoGeografico;
 
-    public Logradouro getLogradouro() {
-        return logradouro;
+    public EnderecamentoPk getId() {
+        return id;
     }
 
-    public void setLogradouro(Logradouro logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setId(EnderecamentoPk id) {
+        this.id = id;
     }
 
     public String getNumero() {
@@ -60,12 +66,11 @@ public class Enderecamento {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + (this.logradouro != null ? this.logradouro.hashCode() : 0);
-        hash = 67 * hash + (this.pessoa != null ? this.pessoa.hashCode() : 0);
-        hash = 67 * hash + (this.numero != null ? this.numero.hashCode() : 0);
-        hash = 67 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
-        hash = 67 * hash + (this.tipoEnderecamento != null ? this.tipoEnderecamento.hashCode() : 0);
-        hash = 67 * hash + (this.pontoGeografico != null ? this.pontoGeografico.hashCode() : 0);
+        hash = 83 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 83 * hash + (this.numero != null ? this.numero.hashCode() : 0);
+        hash = 83 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
+        hash = 83 * hash + (this.tipoEnderecamento != null ? this.tipoEnderecamento.hashCode() : 0);
+        hash = 83 * hash + (this.pontoGeografico != null ? this.pontoGeografico.hashCode() : 0);
         return hash;
     }
 
@@ -78,10 +83,7 @@ public class Enderecamento {
             return false;
         }
         final Enderecamento other = (Enderecamento) obj;
-        if (this.logradouro != other.logradouro && (this.logradouro == null || !this.logradouro.equals(other.logradouro))) {
-            return false;
-        }
-        if (this.pessoa != other.pessoa && (this.pessoa == null || !this.pessoa.equals(other.pessoa))) {
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
         if ((this.numero == null) ? (other.numero != null) : !this.numero.equals(other.numero)) {
@@ -98,7 +100,7 @@ public class Enderecamento {
         }
         return true;
     }
-    
+
     
   
 }

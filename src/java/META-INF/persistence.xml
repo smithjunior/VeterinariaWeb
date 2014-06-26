@@ -7,6 +7,19 @@
     <class>modelo.Raca</class>
     <class>modelo.Pelagem</class>
     <class>modelo.Animal</class>
+    <class>modelo.TipoLocal</class>
+    <class>modelo.Estado</class>
+    <class>modelo.Cidade</class>
+    <class>modelo.Bairro</class>
+    <class>modelo.Documento</class>
+    <class>modelo.Pessoa</class>
+    <class>modelo.PessoaFisica</class>
+    <class>modelo.PessoaJuridica</class>
+    <class>modelo.Documentacao</class>
+    <class>modelo.Logradouro</class>
+    <class>modelo.PontoGeografico</class>
+    <class>modelo.Enderecamento</class>
+    <class>modelo.Veterinario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/webfinal?zeroDateTimeBehavior=convertToNull"/>

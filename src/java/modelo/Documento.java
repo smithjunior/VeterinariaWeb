@@ -1,8 +1,18 @@
 package modelo;
 
-public class Documento {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Documento{
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name ="descricao",length = 80,nullable = false)
     private String descricao;
 
     public Documento() {

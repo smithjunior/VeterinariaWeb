@@ -1,37 +1,42 @@
 package modelo;
 
 import java.util.Calendar;
-
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class Documentacao {
-
-    private Documento documento;
-    private Pessoa pessoa;
+    @EmbeddedId    
+    private DocumentacaoPk id;    
+    @Column(name = "numero",nullable = false,length = 20)
     private String numero;
-    private final Calendar expedicao = Calendar.getInstance();
+    @Temporal(TemporalType.DATE)
+    @Column(name = "expedicao",nullable = false)
+    private Calendar expedicao = Calendar.getInstance();
+    @ManyToOne(fetch = FetchType.LAZY)
     private PessoaJuridica orgao;
 
     public Documentacao() {
     }
 
-    public Documentacao(Documento documento, Pessoa pessoa) {
-        this.documento = documento;
-        this.pessoa = pessoa;
+    public Documentacao(DocumentacaoPk id) {
+        this.id = id;
     }
 
-    public Documento getDocumento() {
-        return documento;
+    public DocumentacaoPk getId() {
+        return id;
     }
 
-    public void setDocumento(Documento documento) {
-        this.documento = documento;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setId(DocumentacaoPk id) {
+        this.id = id;
     }
 
     public String getNumero() {
@@ -40,6 +45,14 @@ public class Documentacao {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public Calendar getExpedicao() {
+        return expedicao;
+    }
+
+    public void setExpedicao(Calendar expedicao) {
+        this.expedicao = expedicao;
     }
 
     public PessoaJuridica getOrgao() {
@@ -52,12 +65,11 @@ public class Documentacao {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + (this.documento != null ? this.documento.hashCode() : 0);
-        hash = 11 * hash + (this.pessoa != null ? this.pessoa.hashCode() : 0);
-        hash = 11 * hash + (this.numero != null ? this.numero.hashCode() : 0);
-        hash = 11 * hash + (this.expedicao != null ? this.expedicao.hashCode() : 0);
-        hash = 11 * hash + (this.orgao != null ? this.orgao.hashCode() : 0);
+        int hash = 5;
+        hash = 23 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 23 * hash + (this.numero != null ? this.numero.hashCode() : 0);
+        hash = 23 * hash + (this.expedicao != null ? this.expedicao.hashCode() : 0);
+        hash = 23 * hash + (this.orgao != null ? this.orgao.hashCode() : 0);
         return hash;
     }
 
@@ -70,10 +82,7 @@ public class Documentacao {
             return false;
         }
         final Documentacao other = (Documentacao) obj;
-        if (this.documento != other.documento && (this.documento == null || !this.documento.equals(other.documento))) {
-            return false;
-        }
-        if (this.pessoa != other.pessoa && (this.pessoa == null || !this.pessoa.equals(other.pessoa))) {
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
         if ((this.numero == null) ? (other.numero != null) : !this.numero.equals(other.numero)) {
@@ -87,11 +96,5 @@ public class Documentacao {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return  documento.getDescricao();
-    }
-    
     
 }

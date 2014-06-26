@@ -1,11 +1,24 @@
 package modelo;
 
-public class PontoGeografico {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class PontoGeografico {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name = "descricao",nullable = false,length = 80)
     private String descricao;
+    @Column(name = "latitude",nullable = false,length = 10)
     private String latitude;
+    @Column(name = "longitude",nullable = false,length = 10)
     private String longitude;
+    @ManyToOne(fetch = FetchType.LAZY)
     private TipoLocal tipoLocal;
 
     public PontoGeografico() {

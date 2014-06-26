@@ -1,11 +1,26 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
-
-public class Pessoa {
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.Generated;
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Pessoa{
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name="nome")
     private String nome;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "nascimento",nullable = false)
     private Calendar nascimento = Calendar.getInstance();
 
     public Pessoa() {

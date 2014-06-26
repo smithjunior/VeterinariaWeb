@@ -1,8 +1,16 @@
 package modelo;
 
-public class Estado {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Estado {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
 
     public Estado() {

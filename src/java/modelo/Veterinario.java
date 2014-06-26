@@ -1,7 +1,11 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Veterinario extends PessoaFisica{
- 
+    @Column(name="crvm",nullable = false,length = 30)
     private String crvm;
 
     public Veterinario() {
