@@ -13,7 +13,7 @@ import org.hibernate.annotations.Generated;
 public class Logradouro {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="descricao",nullable = false,length = 80)
     private String descricao;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -22,21 +22,21 @@ public class Logradouro {
     public Logradouro() {
     }
 
-    public Logradouro(long id) {
+    public Logradouro(Long id) {
         this.id = id;
     }
 
-    public Logradouro(long id, String descricao, Bairro bairro) {
+    public Logradouro(Long id, String descricao, Bairro bairro) {
         this.id = id;
         this.descricao = descricao;
         this.bairro = bairro;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

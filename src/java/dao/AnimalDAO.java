@@ -25,7 +25,7 @@ public class AnimalDAO {
         dao.inserir(animal);
     }
 
-    public Animal consultar(long id) {
+    public Animal consultar(Long id) {
         return dao.consultar(id);
     }
 

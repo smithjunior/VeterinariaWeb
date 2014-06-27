@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class PontoGeografico {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name = "descricao",nullable = false,length = 80)
     private String descricao;
     @Column(name = "latitude",nullable = false,length = 10)
@@ -24,11 +24,11 @@ public class PontoGeografico {
     public PontoGeografico() {
     }
 
-    public PontoGeografico(long id) {
+    public PontoGeografico(Long id) {
         this.id = id;
     }
 
-    public PontoGeografico(long id, String descricao, String latitude, String longitude, TipoLocal tipoLocal) {
+    public PontoGeografico(Long id, String descricao, String latitude, String longitude, TipoLocal tipoLocal) {
         this.id = id;
         this.descricao = descricao;
         this.latitude = latitude;
@@ -36,11 +36,11 @@ public class PontoGeografico {
         this.tipoLocal = tipoLocal;
     }    
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

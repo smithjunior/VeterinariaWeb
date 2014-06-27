@@ -18,7 +18,7 @@ public class GenericDAO<Generic> {
         manager.persist(obj);
     }
 
-    public Generic consultar(long id) {
+    public Generic consultar(Long id) {
         return manager.find(clazz, id);
     }
 

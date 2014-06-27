@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 public class Veterinario implements Serializable{
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private PessoaFisica pessoaFisica;
     @Column(name="crvm",nullable = false,length = 30)
@@ -21,26 +21,26 @@ public class Veterinario implements Serializable{
     public Veterinario() {
     }
 
-    public Veterinario(long id) {
+    public Veterinario(Long id) {
         this.id = id;
     }
 
-    public Veterinario(long id, PessoaFisica pessoaFisica) {
+    public Veterinario(Long id, PessoaFisica pessoaFisica) {
         this.id = id;
         this.pessoaFisica = pessoaFisica;
     }
 
-    public Veterinario(long id, PessoaFisica pessoaFisica, String crvm) {
+    public Veterinario(Long id, PessoaFisica pessoaFisica, String crvm) {
         this.id = id;
         this.pessoaFisica = pessoaFisica;
         this.crvm = crvm;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

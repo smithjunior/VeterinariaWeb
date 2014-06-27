@@ -20,7 +20,7 @@ public class Enderecamento implements Serializable {
  
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @ManyToOne   
     private Logradouro logradouro;
     @ManyToOne
@@ -37,11 +37,11 @@ public class Enderecamento implements Serializable {
     public Enderecamento() {
     }
 
-    public Enderecamento(long id) {
+    public Enderecamento(Long id) {
         this.id = id;
     }
 
-    public Enderecamento(long id, Logradouro logradouro, Pessoa pessoa) {
+    public Enderecamento(Long id, Logradouro logradouro, Pessoa pessoa) {
         this.id = id;
         this.logradouro = logradouro;
         this.pessoa = pessoa;
@@ -79,11 +79,11 @@ public class Enderecamento implements Serializable {
         this.pontoGeografico = pontoGeografico;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

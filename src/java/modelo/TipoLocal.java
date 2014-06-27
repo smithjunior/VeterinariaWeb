@@ -9,24 +9,24 @@ import javax.persistence.Id;
 public class TipoLocal {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
 
     public TipoLocal() {
     }
 
-    public TipoLocal(long id, String descricao) {
+    public TipoLocal(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

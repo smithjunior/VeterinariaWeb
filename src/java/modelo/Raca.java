@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Raca {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name = "decricao",nullable = false,length = 80)
     private String descricao;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -20,17 +20,17 @@ public class Raca {
     public Raca() {
     }
 
-    public Raca(long id, String descricao, Especie especie) {
+    public Raca(Long id, String descricao, Especie especie) {
         this.id = id;
         this.descricao = descricao;
         this.especie = especie;
     }
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

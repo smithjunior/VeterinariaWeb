@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class PessoaFisica implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private Pessoa pessoa;
     @Column(name="cpf",nullable = false,length = 15)
@@ -20,21 +20,21 @@ public class PessoaFisica implements Serializable {
     public PessoaFisica() {
     }
 
-    public PessoaFisica(long id) {
+    public PessoaFisica(Long id) {
         this.id = id;
     }
 
-    public PessoaFisica(long id, Pessoa pessoa, String cpf) {
+    public PessoaFisica(Long id, Pessoa pessoa, String cpf) {
         this.id = id;
         this.pessoa = pessoa;
         this.cpf = cpf;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

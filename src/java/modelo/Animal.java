@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ManyToAny;
 @Entity
-public class Animal {
+public class Animal implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name = "nome",nullable = false,length = 100)
     private String nome;
     @Column(name = "nascimento", nullable = false)
@@ -21,16 +22,16 @@ public class Animal {
     private Calendar nascimento = Calendar.getInstance();
     @Column(name = "chip",nullable = false,length = 50)
     private String chip;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Raca raca;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Pelagem pelagem;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -12,13 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cidade {
+public class Cidade implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Estado estado;
     @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "cidade")
     private List<Bairro> bairros = new ArrayList<Bairro>();
@@ -26,17 +27,17 @@ public class Cidade {
     public Cidade() {
     }
 
-    public Cidade(long id, String descricao, Estado estado) {
+    public Cidade(Long id, String descricao, Estado estado) {
         this.id = id;
         this.descricao = descricao;
         this.estado = estado;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +50,11 @@ public class Cidade {
     }
 
     
-    public long getCidade() {
+    public Long getCidade() {
         return id;
     }
 
-    public void setCidade(long id) {
+    public void setCidade(Long id) {
         this.id = id;
     }
 

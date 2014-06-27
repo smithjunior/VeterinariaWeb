@@ -18,7 +18,7 @@ public class RealizaProcedimento implements Serializable {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @ManyToOne
     private Procedimento procedimento;
     @ManyToOne
@@ -35,16 +35,16 @@ public class RealizaProcedimento implements Serializable {
     public RealizaProcedimento() {
     }
 
-    public RealizaProcedimento(long id) {
+    public RealizaProcedimento(Long id) {
         this.id = id;
     }
 
-    public RealizaProcedimento(long id, Procedimento procedimento) {
+    public RealizaProcedimento(Long id, Procedimento procedimento) {
         this.id = id;
         this.procedimento = procedimento;
     }
 
-    public RealizaProcedimento(long id, Procedimento procedimento, Animal animal) {
+    public RealizaProcedimento(Long id, Procedimento procedimento, Animal animal) {
         this.id = id;
         this.procedimento = procedimento;
         this.animal = animal;
@@ -76,11 +76,11 @@ public class RealizaProcedimento implements Serializable {
         this.veterinario = veterinario;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

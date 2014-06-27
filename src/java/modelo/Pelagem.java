@@ -9,23 +9,23 @@ import javax.persistence.Id;
 public class Pelagem {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="descricao",nullable = false,length = 80)
     private String descricao;
 
     public Pelagem() {
     }
 
-    public Pelagem(long id, String descricao) {
+    public Pelagem(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

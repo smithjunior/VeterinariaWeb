@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Estado implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="descricao",length = 80,nullable = false)
     private String descricao;
     @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "estado")
@@ -23,16 +23,16 @@ public class Estado implements Serializable {
     public Estado() {
     }
 
-    public Estado(long id, String descricao) {
+    public Estado(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

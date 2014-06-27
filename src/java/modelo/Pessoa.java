@@ -16,7 +16,7 @@ import org.hibernate.annotations.Generated;
 public class Pessoa{
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(name="nome")
     private String nome;
     @Temporal(TemporalType.DATE)
@@ -26,16 +26,16 @@ public class Pessoa{
     public Pessoa() {
     }
 
-    public Pessoa(long id, String nome) {
+    public Pessoa(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
