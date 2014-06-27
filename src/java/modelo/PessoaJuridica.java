@@ -1,34 +1,69 @@
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class PessoaJuridica extends Pessoa{
+public class PessoaJuridica implements Serializable{
+    @Id
+    @GeneratedValue
+    private long id;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Pessoa pessoa;
     @Column(name="cnpj",nullable = false,length = 30)
     private String cnpj;
 
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(long id, String nome) {
-        super(id, nome);
+    public PessoaJuridica(long id) {
+        this.id = id;
     }
 
-    public PessoaJuridica(String cnpj, long id, String nome) {
-        super(id, nome);
+    public PessoaJuridica(long id, Pessoa pessoa) {
+        this.id = id;
+        this.pessoa = pessoa;
+    }
+
+    public PessoaJuridica(long id, Pessoa pessoa, String cnpj) {
+        this.id = id;
+        this.pessoa = pessoa;
         this.cnpj = cnpj;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + (this.cnpj != null ? this.cnpj.hashCode() : 0);
+        int hash = 7;
+        hash = 53 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 53 * hash + (this.pessoa != null ? this.pessoa.hashCode() : 0);
+        hash = 53 * hash + (this.cnpj != null ? this.cnpj.hashCode() : 0);
         return hash;
     }
 
@@ -41,6 +76,12 @@ public class PessoaJuridica extends Pessoa{
             return false;
         }
         final PessoaJuridica other = (PessoaJuridica) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.pessoa != other.pessoa && (this.pessoa == null || !this.pessoa.equals(other.pessoa))) {
+            return false;
+        }
         if ((this.cnpj == null) ? (other.cnpj != null) : !this.cnpj.equals(other.cnpj)) {
             return false;
         }
@@ -49,7 +90,8 @@ public class PessoaJuridica extends Pessoa{
 
     @Override
     public String toString() {
-        return getNome();
+        return pessoa.getNome();
     }
-
+    
+    
 }

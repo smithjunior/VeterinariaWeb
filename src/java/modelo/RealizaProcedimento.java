@@ -3,39 +3,54 @@ package modelo;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "procedimento_id","animal_id","dataHora","veterinario"})) 
 public class RealizaProcedimento implements Serializable {
-    @EmbeddedId
-    private RealizaProcedimentoPk id;
+
+    @Id
+    @GeneratedValue
+    private long id;
+    @ManyToOne
+    private Procedimento procedimento;
+    @ManyToOne
+    private Animal animal;
     @Column(name="dataHora",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataHora=  Calendar.getInstance();
     @Column(name="observacao",nullable = false,length = Integer.MAX_VALUE)
     private String observacao;
     @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name="veterinario",nullable = false)
     private Veterinario veterinario;
 
     public RealizaProcedimento() {
     }
 
-    public RealizaProcedimento(RealizaProcedimentoPk id) {
+    public RealizaProcedimento(long id) {
         this.id = id;
+    }
+
+    public RealizaProcedimento(long id, Procedimento procedimento) {
+        this.id = id;
+        this.procedimento = procedimento;
+    }
+
+    public RealizaProcedimento(long id, Procedimento procedimento, Animal animal) {
+        this.id = id;
+        this.procedimento = procedimento;
+        this.animal = animal;
     }
 
     
-    public RealizaProcedimentoPk getId() {
-        return id;
-    }
-
-    public void setId(RealizaProcedimentoPk id) {
-        this.id = id;
-    }
 
     public Calendar getDataHora() {
         return dataHora;
@@ -61,13 +76,39 @@ public class RealizaProcedimento implements Serializable {
         this.veterinario = veterinario;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Procedimento getProcedimento() {
+        return procedimento;
+    }
+
+    public void setProcedimento(Procedimento procedimento) {
+        this.procedimento = procedimento;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 53 * hash + (this.dataHora != null ? this.dataHora.hashCode() : 0);
-        hash = 53 * hash + (this.observacao != null ? this.observacao.hashCode() : 0);
-        hash = 53 * hash + (this.veterinario != null ? this.veterinario.hashCode() : 0);
+        int hash = 5;
+        hash = 13 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 13 * hash + (this.procedimento != null ? this.procedimento.hashCode() : 0);
+        hash = 13 * hash + (this.animal != null ? this.animal.hashCode() : 0);
+        hash = 13 * hash + (this.dataHora != null ? this.dataHora.hashCode() : 0);
+        hash = 13 * hash + (this.observacao != null ? this.observacao.hashCode() : 0);
+        hash = 13 * hash + (this.veterinario != null ? this.veterinario.hashCode() : 0);
         return hash;
     }
 
@@ -80,7 +121,13 @@ public class RealizaProcedimento implements Serializable {
             return false;
         }
         final RealizaProcedimento other = (RealizaProcedimento) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.procedimento != other.procedimento && (this.procedimento == null || !this.procedimento.equals(other.procedimento))) {
+            return false;
+        }
+        if (this.animal != other.animal && (this.animal == null || !this.animal.equals(other.animal))) {
             return false;
         }
         if (this.dataHora != other.dataHora && (this.dataHora == null || !this.dataHora.equals(other.dataHora))) {
@@ -94,7 +141,5 @@ public class RealizaProcedimento implements Serializable {
         }
         return true;
     }
-
-    
     
 }

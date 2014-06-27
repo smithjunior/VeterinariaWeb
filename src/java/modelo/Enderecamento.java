@@ -1,20 +1,30 @@
 package modelo;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "logradouro_id","pessoa_id","tipoEnderecamento" }))
 public class Enderecamento implements Serializable {
-    @EmbeddedId
-    private EnderecamentoPk id;
+ 
+    @Id
+    @GeneratedValue
+    private long id;
+    @ManyToOne   
+    private Logradouro logradouro;
+    @ManyToOne
+    private Pessoa pessoa;    
     @Column(name="numero",length = 30,nullable = false)
     private String numero;
     @Column(name = "complemento",length = 100,nullable = false)
@@ -24,12 +34,17 @@ public class Enderecamento implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private PontoGeografico pontoGeografico;
 
-    public EnderecamentoPk getId() {
-        return id;
+    public Enderecamento() {
     }
 
-    public void setId(EnderecamentoPk id) {
+    public Enderecamento(long id) {
         this.id = id;
+    }
+
+    public Enderecamento(long id, Logradouro logradouro, Pessoa pessoa) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.pessoa = pessoa;
     }
 
     public String getNumero() {
@@ -64,14 +79,40 @@ public class Enderecamento implements Serializable {
         this.pontoGeografico = pontoGeografico;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Logradouro getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(Logradouro logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 83 * hash + (this.numero != null ? this.numero.hashCode() : 0);
-        hash = 83 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
-        hash = 83 * hash + (this.tipoEnderecamento != null ? this.tipoEnderecamento.hashCode() : 0);
-        hash = 83 * hash + (this.pontoGeografico != null ? this.pontoGeografico.hashCode() : 0);
+        int hash = 5;
+        hash = 67 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 67 * hash + (this.logradouro != null ? this.logradouro.hashCode() : 0);
+        hash = 67 * hash + (this.pessoa != null ? this.pessoa.hashCode() : 0);
+        hash = 67 * hash + (this.numero != null ? this.numero.hashCode() : 0);
+        hash = 67 * hash + (this.complemento != null ? this.complemento.hashCode() : 0);
+        hash = 67 * hash + (this.tipoEnderecamento != null ? this.tipoEnderecamento.hashCode() : 0);
+        hash = 67 * hash + (this.pontoGeografico != null ? this.pontoGeografico.hashCode() : 0);
         return hash;
     }
 
@@ -84,7 +125,13 @@ public class Enderecamento implements Serializable {
             return false;
         }
         final Enderecamento other = (Enderecamento) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.logradouro != other.logradouro && (this.logradouro == null || !this.logradouro.equals(other.logradouro))) {
+            return false;
+        }
+        if (this.pessoa != other.pessoa && (this.pessoa == null || !this.pessoa.equals(other.pessoa))) {
             return false;
         }
         if ((this.numero == null) ? (other.numero != null) : !this.numero.equals(other.numero)) {
@@ -101,7 +148,7 @@ public class Enderecamento implements Serializable {
         }
         return true;
     }
-
+    
     
   
 }

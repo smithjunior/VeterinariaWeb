@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cidade {
@@ -17,6 +20,8 @@ public class Cidade {
     private String descricao;
     @ManyToOne(fetch = FetchType.LAZY)
     private Estado estado;
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "cidade")
+    private List<Bairro> bairros = new ArrayList<Bairro>();
 
     public Cidade() {
     }
@@ -27,6 +32,23 @@ public class Cidade {
         this.estado = estado;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Bairro> getBairros() {
+        return bairros;
+    }
+
+    public void setBairros(List<Bairro> bairros) {
+        this.bairros = bairros;
+    }
+
+    
     public long getCidade() {
         return id;
     }
@@ -50,13 +72,28 @@ public class Cidade {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+    
+      public void addCidade(Bairro bairro) {
+        if (!getBairros().contains(bairro)) {
+            getBairros().add(bairro);
+            bairro.setCidade(this);
+        }
+    }
+
+    public void removeCidade(Bairro bairro) {
+        if (getBairros().contains(bairro)) {
+            getBairros().remove(bairro);
+            bairro.setCidade(null);
+        }
+    }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 59 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
-        hash = 59 * hash + (this.estado != null ? this.estado.hashCode() : 0);
+        hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 83 * hash + (this.descricao != null ? this.descricao.hashCode() : 0);
+        hash = 83 * hash + (this.estado != null ? this.estado.hashCode() : 0);
+        hash = 83 * hash + (this.bairros != null ? this.bairros.hashCode() : 0);
         return hash;
     }
 
@@ -78,7 +115,16 @@ public class Cidade {
         if (this.estado != other.estado && (this.estado == null || !this.estado.equals(other.estado))) {
             return false;
         }
+        if (this.bairros != other.bairros && (this.bairros == null || !this.bairros.equals(other.bairros))) {
+            return false;
+        }
         return true;
     }
 
+    @Override
+    public String toString() {
+        return descricao;
+    }
+
+    
 }
