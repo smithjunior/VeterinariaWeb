@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-public class RealizaProcedimento {
+public class RealizaProcedimento implements Serializable {
     @EmbeddedId
     private RealizaProcedimentoPk id;
     @Column(name="dataHora",nullable = false)

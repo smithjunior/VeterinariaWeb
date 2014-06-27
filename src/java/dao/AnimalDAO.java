@@ -5,10 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import modelo.Animal;
 
-/**
- *
- * @author Juliano Toriani <julianotoriani@gmail.com>
- */
 public class AnimalDAO {
     
     private final GenericDAO<Animal> dao;
@@ -44,9 +40,5 @@ public class AnimalDAO {
     public void alterar(Animal animal) {
         dao.alterar(animal);
     }
-    
-    
-    
-    
-
+   
 }

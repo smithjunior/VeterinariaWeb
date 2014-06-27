@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Enderecamento {
+public class Enderecamento implements Serializable {
     @EmbeddedId
     private EnderecamentoPk id;
     @Column(name="numero",length = 30,nullable = false)
