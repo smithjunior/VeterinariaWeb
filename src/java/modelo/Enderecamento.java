@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -15,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "logradouro_id","pessoa_id","tipoEnderecamento" }))
+@Table(name = "enderecamento",uniqueConstraints = @UniqueConstraint(columnNames = { "logradouro_id","pessoa_id" }))
 public class Enderecamento implements Serializable {
  
     @Id

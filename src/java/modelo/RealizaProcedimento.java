@@ -26,7 +26,7 @@ public class RealizaProcedimento implements Serializable {
     @Column(name="dataHora",nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataHora=  Calendar.getInstance();
-    @Column(name="observacao",nullable = false,length = Integer.MAX_VALUE)
+    @Column(nullable = false)
     private String observacao;
     @ManyToOne(fetch = FetchType.LAZY)
     @Column(name="veterinario",nullable = false)

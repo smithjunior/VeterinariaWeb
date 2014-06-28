@@ -15,7 +15,7 @@ public class Veterinario implements Serializable{
     private Long id;
     @OneToOne(cascade = CascadeType.ALL)
     private PessoaFisica pessoaFisica;
-    @Column(name="crvm",nullable = false,length = 30)
+    @Column(name="crvm",nullable = false,length = 30,unique = true)
     private String crvm;
 
     public Veterinario() {

@@ -22,7 +22,7 @@ public class Documentacao implements Serializable {
     private Documento documento;
     @ManyToOne
     private Pessoa pessoa;
-    @Column(name = "numero",nullable = false,length = 20)
+    @Column(nullable = false,length = 20)
     private String numero;
     @Temporal(TemporalType.DATE)
     @Column(name = "expedicao",nullable = false)
